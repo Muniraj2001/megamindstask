@@ -1,5 +1,6 @@
 from calendar import c
 from http.client import HTTPResponse
+import logging
 from pdb import post_mortem
 from django.db.models import Count
 from django.shortcuts import render, redirect
@@ -35,61 +36,55 @@ from random import sample
 
 from django.db.models import F, FloatField, ExpressionWrapper
 
-# @login_required
+logger = logging.getLogger(__name__)
+
+@login_required
 def home(request):
-    totalitem = 0
-    wishitem = 0
+    try:
+        totalitem = Cart.objects.filter(user=request.user).count()
+        wishitem = Wishlist.objects.filter(user=request.user).count()
 
-    if request.user.is_authenticated:
-        totalitem = len(Cart.objects.filter(user=request.user))
-        wishitem = len(Wishlist.objects.filter(user=request.user))
+        posts = Post1.objects.all()
+        clients = Client.objects.all()
 
-    posts = Post1.objects.all()
-    clients = Client.objects.all()
-    product1 = ProductPricedrop.objects.get(pk=1)
+        # Get ProductPricedrop or use get_object_or_404 for better error handling
+        product1 = get_object_or_404(ProductPricedrop, pk=1)
 
-    # Get all products ordered by discount_percentage in descending order
-    products = Product.objects.annotate(
-        discount_percentage_float=ExpressionWrapper(
-            (F('selling_price') - F('discounted_price')) / F('selling_price') * 100,
-            output_field=FloatField()
-        )
-    ).order_by('-discount_percentage_float')[:10]
+        # Get top 10 products ordered by discount_percentage in descending order
+        products = Product.objects.annotate(
+            discount_percentage_float=ExpressionWrapper(
+                (F('selling_price') - F('discounted_price')) / F('selling_price') * 100,
+                output_field=FloatField()
+            )
+        ).order_by('-discount_percentage_float')[:10]
 
-    special_offers = Product.objects.all()
+        # Get all products for special offers
+        special_offers = Product.objects.all()
 
-    # Get all Shopnow objects
-    all_shopnows = Product.objects.all()
+        # Randomly select 10 products for special offers
+        special_offers = sample(list(special_offers), min(10, len(special_offers)))
 
-    # Randomly select 5 Shopnow objects
-    special_offers = sample(list(special_offers), min(10, len(special_offers)))
+        # Get all products for Shopnow
+        all_shopnows = Product.objects.all()
 
+        # Randomly select 5 products for Shopnow
+        random_shopnows = sample(list(all_shopnows), min(5, len(all_shopnows)))
 
+        return render(request, "app/home.html", {
+            'products': products,
+            'special_offers': special_offers,
+            'posts': posts,
+            'totalitem': totalitem,
+            'wishitem': wishitem,
+            'clients': clients,
+            'shopnows': random_shopnows,
+            'product1': product1,
+        })
 
-
-  # Get all Shopnow objects
-    all_shopnows = Product.objects.all()
-
-    # Randomly select 5 Shopnow objects
-    random_shopnows = sample(list(all_shopnows), min(5, len(all_shopnows)))
-
-
-
-
-
-
-    return render(request, "app/home.html", {
-        'products': products,
-        'special_offers': special_offers,
-        'posts': posts,
-        'totalitem': totalitem,
-        'wishitem': wishitem,
-        'clients': clients,
-        'shopnows': random_shopnows,
-        'product1' : product1,
-    })
-
-
+    except Exception as e:
+        logger.exception("An error occurred in the home view: %s", str(e))
+        # Handle the error or redirect to an error page
+        return render(request, "app/error.html", {'error_message': str(e)})
 
 @login_required
 def add_comment(request, post_id):
