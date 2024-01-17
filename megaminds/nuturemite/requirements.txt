@@ -16,13 +16,13 @@ idna==3.4
 packaging==23.2
 Pillow==10.1.0
 psycopg2==2.9.9
-pyproject_hooks==1.0.0
+pyproject-hooks==1.0.0
 PyYAML==3.13
 razorpay==1.4.1
 requests==2.31.0
 setuptools==68.2.2
 sqlparse==0.4.4
-typing_extensions==4.8.0
+typing-extensions==4.8.0
 tzdata==2023.3
 urllib3==2.0.7
 wheel==0.41.3
