@@ -33,7 +33,7 @@ PyJWT==2.8.0
 pyproject_hooks==1.0.0
 python-dateutil==2.8.2
 python-dotenv==1.0.0
-PyYAML==3.13
+PyYAML
 requests==2.31.0
 setuptools==68.2.2
 simplejson==3.17.2
