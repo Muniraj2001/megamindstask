@@ -31,11 +31,11 @@ SECRET_KEY = 'django-insecure-!xqk1&%5vi!f=cduwp%$w4l&4e04mwv_b8&@=c3jfip$+tgfmn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# <<<<<<< HEAD
-# ALLOWED_HOSTS = ['nuturemite.com', 'localhost', '*']
-# =======
-# ALLOWED_HOSTS = ['megamindstask.vercel.app', 'nuturemite.com','*']
-# >>>>>>> 2e2ed5c07731b81716afe8c2bf76d8d4fb2aa050
+<<<<<<< HEAD
+ALLOWED_HOSTS = ['nuturemite.com', 'localhost', '*']
+=======
+ALLOWED_HOSTS = ['megamindstask.vercel.app', 'nuturemite.com','*']
+>>>>>>> 2e2ed5c07731b81716afe8c2bf76d8d4fb2aa050
 ALLOWED_HOSTS = ['megamindstask.vercel.app', 'nuturemite.com', 'localhost']
 request_allowed_hosts = [request.get_host()]
 ALLOWED_HOSTS = request_allowed_hosts
