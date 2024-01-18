@@ -33,7 +33,7 @@ PyJWT==2.8.0
 pyproject_hooks==1.0.0
 python-dateutil==2.8.2
 python-dotenv==1.0.0
-PyYAML>=3.12
+PyYAML==3.12
 requests==2.31.0
 setuptools==68.2.2
 simplejson==3.17.2
@@ -47,4 +47,3 @@ urllib3==2.0.7
 wheel==0.41.3
 whitenoise==6.6.0
 yarl==1.9.4
-
