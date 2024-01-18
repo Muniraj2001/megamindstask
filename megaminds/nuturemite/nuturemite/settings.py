@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-!xqk1&%5vi!f=cduwp%$w4l&4e04mwv_b8&@=c3jfip$+tgfmn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nuturemite.com', 'localhost']
+ALLOWED_HOSTS = ['nuturemite.com', 'localhost', '*']
 
 
 # Application definition
