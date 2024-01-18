@@ -29,7 +29,11 @@ SECRET_KEY = 'django-insecure-!xqk1&%5vi!f=cduwp%$w4l&4e04mwv_b8&@=c3jfip$+tgfmn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['nuturemite.com', 'localhost', '*']
+=======
+ALLOWED_HOSTS = ['megamindstask.vercel.app', 'nuturemite.com','*']
+>>>>>>> 2e2ed5c07731b81716afe8c2bf76d8d4fb2aa050
 
 
 # Application definition
@@ -127,6 +131,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
 LOGIN_REDIRECT_URL = '/profile/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_DIR', 'static')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles'),
 ]

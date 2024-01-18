@@ -16,3 +16,5 @@ settings_module = 'nuturemite.deployment' if 'WEBSITE_HOSTNAME' in os.environ el
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nuturemite.settings')
 
 application = get_wsgi_application()
+
+app = application

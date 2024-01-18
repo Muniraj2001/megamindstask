@@ -1,1 +1,1 @@
-gunicorn nurturemite.wsgi:application --log-file -
+web: gunicorn nurturemite.wsgi:application --log-file -

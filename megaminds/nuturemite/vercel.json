@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "vercel-django.sh",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "1024mb", "python": "3.8" }
+    }
+  ],
+  "routes": [{"src": "/(.*)", "dest": "/"}]
+}
