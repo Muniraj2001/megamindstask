@@ -22,4 +22,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      # Add additional steps for deploying to Azure
+      - name: Your Azure Deployment Steps
+        run: |
+          # Add your Azure deployment steps here
+          # For example:
+          # az login
+          # az webapp up --name your-webapp-name --resource-group your-resource-group
+
+# You can add more steps or customize the workflow as needed
