@@ -36,6 +36,10 @@ jobs:
           name: python-app
           path: release.zip
 
+      - name: Set output variable
+        run: echo "webapp-url=$(some_command_to_get_url)" >> $GITHUB_ENV
+        if: always()
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -67,5 +71,3 @@ jobs:
         with:
           app-name: 'nuturemites'
           slot-name: 'Production'
-
-          
