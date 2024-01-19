@@ -27,18 +27,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Zip artifact for deployment
-        run: zip -r release.zip .
-
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
           name: python-app
-          path: release.zip
+          path: |
+            .
+            |venv/
 
-      - name: Set output variable
-        run: echo "webapp-url=$(some_command_to_get_url)" >> $GITHUB_ENV
-        if: always()
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,17 +50,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: python-app
-
-      - name: Unzip artifact for deployment
-        run: unzip -o release.zip
-
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E4550AB3D4CB453497BA794FB3AF8DCF }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EA7AE54333A6464D82DA397A7C70C23E }}
-          subscription-id: e1657644-0664-4d88-9193-0459ababb9bf  # Your Azure subscription ID
-          auth-type: SERVICE_PRINCIPAL
+          path: .
+      
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
