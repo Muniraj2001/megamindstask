@@ -11,9 +11,29 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:nuturemite/wsgi.py
 settings_module = 'nuturemite.deployment' if 'WEBSITE_HOSTNAME' in os.environ else 'nuturemite.settings'
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
+========
+=======
+>>>>>>> e2bab8f2e1c705019d5369ddc52d450bc738d64f
+<<<<<<< HEAD
+setttings_module = 'nuturemite.deployment' if 'WEBSITE_HOSTNAME' in os.environ else 'nuturemite.setttings'
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', setttings_module)
+=======
+settings_module = 'nuturemite.deployment' if 'WEBSITE_HOSTNAME' in os.environ else 'nuturemite.settings'
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nuturemite.settings')
+>>>>>>> fa76898c7c21cb532ee1ad4e07e1a675ef07fc78
+<<<<<<< HEAD
+>>>>>>>> e2bab8f2e1c705019d5369ddc52d450bc738d64f:megaminds/nuturemite/nuturemite/wsgi.py
+=======
+>>>>>>> e2bab8f2e1c705019d5369ddc52d450bc738d64f
 
 application = get_wsgi_application()
+
+app = application

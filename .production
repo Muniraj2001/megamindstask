@@ -1,2 +1,10 @@
 [config]
+<<<<<<< HEAD
 SCM_DO_BUILD_DURING_DEPLOYMENT=true
+=======
+<<<<<<< HEAD
+SCM_DO_BUILD_DURING_DEPLOYMENT=true
+=======
+SCM_DO_BUILD_DURING_DEVELOPMENT = true
+>>>>>>> fa76898c7c21cb532ee1ad4e07e1a675ef07fc78
+>>>>>>> e2bab8f2e1c705019d5369ddc52d450bc738d64f
