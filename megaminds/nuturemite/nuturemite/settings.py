@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+
+from requests import request
 from .juzmin import JAZZMIN_SETTINGS
 
 
@@ -29,7 +31,14 @@ SECRET_KEY = 'django-insecure-!xqk1&%5vi!f=cduwp%$w4l&4e04mwv_b8&@=c3jfip$+tgfmn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nuturemite.com', 'localhost']
+# <<<<<<< HEAD
+# ALLOWED_HOSTS = ['nuturemite.com', 'localhost', '*']
+# =======
+# ALLOWED_HOSTS = ['megamindstask.vercel.app', 'nuturemite.com','*']
+# >>>>>>> 2e2ed5c07731b81716afe8c2bf76d8d4fb2aa050
+ALLOWED_HOSTS = ['megamindstask.vercel.app', 'nuturemite.com', 'localhost']
+request_allowed_hosts = [request.get_host()]
+ALLOWED_HOSTS = request_allowed_hosts
 
 
 # Application definition
@@ -127,6 +136,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
 LOGIN_REDIRECT_URL = '/profile/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_DIR', 'static')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles'),
 ]
