@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-!xqk1&%5vi!f=cduwp%$w4l&4e04mwv_b8&@=c3jfip$+tgfmn
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['megamindstask.vercel.app', 'nuturemite.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
