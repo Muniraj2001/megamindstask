@@ -42,43 +42,41 @@ jobs:
           name: python-app
           path: release.zip
 
-      - name: Deploy
-        runs-on: ubuntu-latest
-        needs: deploy
-        environment:
-          name: 'Production'
-          url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-        permissions:
-          id-token: write # This is required for requesting the JWT
+  deploy-staging:
+    runs-on: ubuntu-latest
+    needs: deploy
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-        steps:
-          - name: Download artifact from build job
-            uses: actions/download-artifact@v3
-            with:
-              name: python-app
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: python-app
 
-          - name: Unzip artifact for deployment
-            run: unzip -q release.zip
+      - name: Unzip artifact for deployment
+        run: unzip -q release.zip
 
-          - name: Print directory content for debugging
-            run: ls -R
+      - name: Print directory content for debugging
+        run: ls -R
 
-          - name: Set up Azure CLI
-            uses: azure/CLI@v1
-            with:
-              azcliversion: latest
+      - name: Set up Azure CLI
+        uses: azure/CLI@v1
+        with:
+          azcliversion: latest
 
-          - name: Login to Azure
-            uses: azure/login@v1
-            with:
-              client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E4550AB3D4CB453497BA794FB3AF8DCF }}
-              tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EA7AE54333A6464D82DA397A7C70C23E }}
-              subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9CE6E64E9E9E447AB3707785F9D32873 }}
-              env: AZURE_DEBUG_CLI=1
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_E4550AB3D4CB453497BA794FB3AF8DCF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EA7AE54333A6464D82DA397A7C70C23E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9CE6E64E9E9E447AB3707785F9D32873 }}
+          env: AZURE_DEBUG_CLI=1
 
-          - name: 'Deploy to Azure Web App'
-            uses: azure/webapps-deploy@v2
-            id: deploy-to-webapp
-            with:
-              app-name: 'nuturemites'
-              slot-name: 'Production'
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'nuturemites'
+          slot-name: 'Production'
