@@ -7,12 +7,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Use Azure CLI
+        uses: azure/CLI@v1
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az login
+            az group create --name MyResourceGroup --location eastus
+            # Add more commands as needed
 
       - name: Set up Python version
         uses: actions/setup-python@v1
