@@ -15,7 +15,7 @@ STATE_CHOICES = {
     ('Dadra & Nagar Haveli', 'Dadra & Nagar Haveli'), 
     ('Daman and Diu', 'Daman and Diu'), 
     ('Delhi', 'Delhi'), ('Goa', 'Goa'), 
-    ('Gujrat', 'Gujrat'), ('Haryana', 'Haryana'),
+    ('Gujrat', 'Gujrat'), ('Haryana', 'Haryana'), 
     ('Himachal Pradesh', 'Himachal Pradesh'), 
     ('Jammu & Kashmir', 'Jammu & Kashmir'),
 }
